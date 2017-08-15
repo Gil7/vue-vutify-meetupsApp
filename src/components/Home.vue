@@ -13,11 +13,12 @@
       </v-flex>
     </v-layout>
     <v-layout row wrap class="mt-2">
-      <v-carousel>
+      <v-carousel style="cursor: pointer">
         <v-carousel-item 
           v-for="meetup in meetups" 
           :src="meetup.imageUrl" 
-          :key="meetup.id">
+          :key="meetup.id"
+          @click="loadMeetup(meetup.id)">
           <div class="title">
             {{meetup.title}}
           </div>
@@ -43,6 +44,11 @@
           {imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Tuxtla_Gutierrez_vista_de_Noche.jpg', id: 'asdakjhsa', title: 'Meetup on NY'},
           {imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/3/30/Catedral_de_San_Crist%C3%B3bal_de_las_Casas_1.jpg', id: 'asqwqeapa', title: 'Meetup San cristobal'}
         ]
+      }
+    },
+    methods: {
+      loadMeetup (id) {
+        this.$router.push('/meetup/' + id)
       }
     }
   }
