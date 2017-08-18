@@ -38,12 +38,9 @@
 </template>
 <script>
   export default {
-    data () {
-      return {
-        meetups: [
-          {imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Tuxtla_Gutierrez_vista_de_Noche.jpg', id: 'asdakjhsa', title: 'Meetup on NY'},
-          {imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/3/30/Catedral_de_San_Crist%C3%B3bal_de_las_Casas_1.jpg', id: 'asqwqeapa', title: 'Meetup San cristobal'}
-        ]
+    computed: {
+      meetups () {
+        return this.$store.getters.featuredMeetups
       }
     },
     methods: {

@@ -5,15 +5,15 @@
               <v-card>
                   <v-card-title>
                       <h6>
-                          {{$route.params.id}}
+                          {{meetup.title}}
                       </h6>
                   </v-card-title>
                   <v-card-media
-                  src="https://upload.wikimedia.org/wikipedia/commons/3/30/Catedral_de_San_Crist%C3%B3bal_de_las_Casas_1.jpg"
+                  :src="meetup.imageUrl"
                   height="400px">
                   </v-card-media>
                   <v-card-text>
-                      <div class="info--text">17th July 2017- where it takes places</div>
+                      <div class="info--text"> {{meetup.date}}- where it takes places</div>
                       <div>
                           lorem kas dlahdlkas hdlkashd lasd
                           ad ahlkjd hsalkjdhaslkd hsadl
@@ -33,3 +33,13 @@
       </v-layout>
   </v-container>
 </template>
+<script>
+    export default {
+        props: ['id'],
+        computed : {
+            meetup () {
+                return this.$store.getters.loadedMeetup(this.id)
+            }
+        }
+    }
+</script>
