@@ -66,9 +66,27 @@
                     </v-layout>
                     <v-layout row>
                         <v-flex xs12 sm6 offset-sm3>
+                            <h4>Choose a Data & Time</h4>
+                        </v-flex>
+                    </v-layout>
+                    <v-layout row>
+                        <v-flex xs12 sm6 offset-sm3>
+                            <v-date-picker v-model="date"></v-date-picker>
+                            {{date}}
+                        </v-flex>
+                    </v-layout>
+                    <v-layout row>
+                        <v-flex xs12 sm6 offset-sm3>
+                            <v-time-picker v-model="time" format="24hr"></v-time-picker>
+                            {{time}}
+                        </v-flex>
+                    </v-layout>
+                    <v-layout row>
+                        <v-flex xs12 sm6 offset-sm3>
                             <v-btn type="submit" class="primary" :disabled="!formIsValid">
                                 Create meetup
                             </v-btn>
+                            {{submittableDateTime}}
                         </v-flex>
                     </v-layout>
                 </form>
@@ -85,6 +103,8 @@ export default {
             location: '',
             imageUrl: '',
             description: '',
+            date: new Date(),
+            time: new Date()
         }
     },
     computed: {
@@ -93,6 +113,22 @@ export default {
                 this.location !== '' &&
                 this.description !== '' &&
                 this.imageUrl !== ''
+        },
+        submittableDateTime () {
+            const date = new Date(this.date)
+            console.log(this.date)
+            console.log(date)
+            if (typeof this.time === 'string') {
+                let hours = this.time.match(/^(\d+)/)[1]
+                const minutes = this.time.match(/:(\d+)/)[1]
+                date.setHours(hours)
+                date.setMinutes(minutes)
+            }else{
+                date.setHours(this.time.getHours())
+                date.setMinutes(this.time.getMinutes())
+            }
+            console.log(date)
+            return date
         }
     },
     methods: {
@@ -105,7 +141,7 @@ export default {
                 location: this.location,
                 imageUrl: this.imageUrl,
                 description: this.description,
-                date: new Date()
+                date: this.submittableDateTime
                 
             }
             this.$store.dispatch('createMeetup',meetupData)   
