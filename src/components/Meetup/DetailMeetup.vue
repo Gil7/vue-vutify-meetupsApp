@@ -13,10 +13,9 @@
                   height="400px">
                   </v-card-media>
                   <v-card-text>
-                      <div class="info--text"> {{meetup.date}}- where it takes places</div>
+                      <div class="info--text"> {{meetup.date | date}}- where it takes places</div>
                       <div>
-                          lorem kas dlahdlkas hdlkashd lasd
-                          ad ahlkjd hsalkjdhaslkd hsadl
+                          {{meetup.description}}
                       </div>
                       <v-card-actions>
                           <v-spacer></v-spacer>
