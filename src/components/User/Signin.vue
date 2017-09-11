@@ -65,6 +65,13 @@ export default {
         return {
             email: '',
             password: '',
+            confirmPassword: ''
+        }
+    },
+    data () {
+        return {
+            email: '',
+            password: '',
         }
     },
     computed: {
