@@ -73,6 +73,9 @@
 
 <script>
 export default {
+    created () {
+        this.$store.dispatch('setLoading',false)
+    },
     data () {
         return {
             email: '',
