@@ -6,6 +6,7 @@ import router from './router'
 import { store } from './store'
 import DateFilter from './filters/date'
 import AlertCmp from './components/Shared/Alert.vue'
+import { credentials } from './db/credentials.js'
 Vue.use(Vuetify)
 Vue.config.productionTip = false
 Vue.filter('date',DateFilter)
@@ -18,12 +19,7 @@ new Vue({
   render: h => h(App),
   created () {
     firebase.initializeApp({
-      apiKey: "AIzaSyCBHEAuByO6i9--4Zkg1czo_zBIYdf_nxE",
-      authDomain: "meetups-b5cb2.firebaseapp.com",
-      databaseURL: "https://meetups-b5cb2.firebaseio.com",
-      projectId: "meetups-b5cb2",
-      storageBucket: "gs://meetups-b5cb2.appspot.com",
-      messagingSenderId: "608427885575" 
+      ...credentials
     })
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
